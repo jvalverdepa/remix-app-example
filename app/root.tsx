@@ -11,13 +11,18 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { getContacts } from "./data";
+import { createEmptyContact, getContacts } from "./data";
 import appStylesHref from "./app.css?url";
 
 // existing exports
 export const loader = async () => {
   const contacts = await getContacts();
   return json({ contacts });
+};
+
+export const action = async () => {
+  const contact = await createEmptyContact();
+  return json({ contact });
 };
 
 export const links: LinksFunction = () => [
