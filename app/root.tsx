@@ -63,7 +63,13 @@ export default function App() {
           <div>
             <Form
               id="search-form"
-              onChange={(event) => submit(event.currentTarget)}
+              onChange={(event) => {
+                const isFirstSearch = q === null;
+                console.log(isFirstSearch);
+                submit(event.currentTarget, {
+                  replace: !isFirstSearch,
+                });
+              }}
               role="search"
             >
               <input
